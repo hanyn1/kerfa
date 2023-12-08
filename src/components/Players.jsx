@@ -1,7 +1,12 @@
 import React from 'react'
+import PlayerList from './PlayerList'
 import Data from '../DataBase/Data'
 import 'bootstrap/dist/css/bootstrap.css'
 export default function Players() {
+  if (!Array.isArray(Data)) {
+    console.error('Data is not an array');
+    return null; 
+  }
   return (
     <div>
       {
@@ -16,12 +21,14 @@ export default function Players() {
         <h5 class="card-title">{ele.name}</h5>
         <p class="card-text">{ele.jersyNumber}</p>
         <p class="card-text"><small class="text-body-secondary">{ele.nationality}</small></p>
+        <PlayerList playerName={ele.name} playerImage={ele.image} key={ele.id}/>
       </div>
     </div>
   </div>
 </div>
         ))
       }
+      
     </div>
   )
 }
